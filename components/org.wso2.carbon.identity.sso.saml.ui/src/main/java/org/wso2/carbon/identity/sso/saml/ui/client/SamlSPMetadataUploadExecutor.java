@@ -97,6 +97,10 @@ public class SamlSPMetadataUploadExecutor extends AbstractFileUploadExecutor {
                     attributeConsumingServiceIndex = serviceProviderDTO.getAttributeConsumingServiceIndex();
                 }
 
+                // Store the certificate contained inside the metadata file, in the session.
+                httpServletRequest.getSession().setAttribute("applicationCertificate",
+                        serviceProviderDTO.getCertificateContent());
+
                 CarbonUIMessage.sendCarbonUIMessage(msg, CarbonUIMessage.INFO, httpServletRequest,
                         httpServletResponse, getContextRoot(httpServletRequest)
                                 + "/" + webContext + "/application/configure-service-provider" +
